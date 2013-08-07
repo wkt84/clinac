@@ -1,0 +1,16 @@
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+/acc/X1 150 mm
+/acc/X2 150 mm
+/acc/Y1 150 mm
+/acc/Y2 150 mm
+/general/nMax 10000
+/general/bSave false
+/general/bUsePS true
+#/general/PSname data/20x20.dat
+/killer/gamma 0 MeV
+/killer/e- 0 MeV
+/killer/e+ 0 MeV
+/killer/neutron 0 MeV
+/run/beamOn 300000000
