@@ -14,12 +14,12 @@ endif
 .PHONY: all
 all: lib bin
 
+# enable ROOT output option
+#CPPFLAGS += -D__OUTPUT_ROOTFILE__
+
 CPPFLAGS += $(shell $(ROOTSYS)/bin/root-config --cflags)
 ROOTLIBS = $(shell $(ROOTSYS)/bin/root-config --glibs)
 EXTRALIBS += $(ROOTLIBS)
 
 
 include $(G4INSTALL)/config/binmake.gmk
-
-CXXFLAGS = -ansi -pedantic -Wno-non-virtual-dtor -Wno-long-long
-CXXFLAGS += -Wwrite-strings -Wpointer-arith -Woverloaded-virtual -fPIC

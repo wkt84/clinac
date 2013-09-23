@@ -14,7 +14,7 @@ AnalysisManager* AnalysisManager::instance = 0;
 AnalysisManager::AnalysisManager() : 
 hist_z(0), hist_xz(0), hist_n(0), hist_u(0), hist_d2(0), hist_o(0)
 {
-  gROOT->Reset();
+//gROOT->Reset();
 }
 
 AnalysisManager::~AnalysisManager() 
