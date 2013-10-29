@@ -80,7 +80,7 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 
 		AnalysisManager* analysis = AnalysisManager::getInstance();
 
-		if (y < 8.0 * mm && y > -8.0 * mm)
+		if (y < 5.0 * mm && y > -5.0 * mm)
 		{ 
 			// Fill a 2D histogram with the energy deposit in the plane
 			// containing the source
