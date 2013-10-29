@@ -41,7 +41,7 @@
 PhysicsList::PhysicsList() : G4VUserPhysicsList()
 {
 	G4LossTableManager::Instance();
-	defaultCutValue = 1.*mm;
+	defaultCutValue = 0.1*mm;
 	cutForGamma = defaultCutValue;
 	cutForElectron = defaultCutValue;
 	cutForPositron = defaultCutValue;
