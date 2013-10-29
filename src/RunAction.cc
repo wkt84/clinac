@@ -33,7 +33,7 @@ RunAction::~RunAction()
 void RunAction::BeginOfRunAction(const G4Run* aRun)
 {
   //set StepMax
-	G4double stepMax = 1.*mm;
+	G4double stepMax = 0.1*mm;
 	physics->GetStepMaxProcess()->SetMaxStep(stepMax);
 	
 	G4cout << "### Run " << aRun->GetRunID() << " start." << G4endl;
