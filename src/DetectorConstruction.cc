@@ -44,9 +44,9 @@ DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, S
   worldSizeZ = 1.2*m;
 
 	//Define half size of the phantom
-  phantomSizeX = 0.2*m;
-  phantomSizeY = 0.2*m;
-  phantomSizeZ = 0.025*m;
+  phantomSizeX = 0.25*m;
+  phantomSizeY = 0.25*m;
+  phantomSizeZ = 0.25*m;
 
   //Define the number of Voxels
 	numberOfVoxelsAlongX = 500;
@@ -193,10 +193,10 @@ void DetectorConstruction::ConstructAccel(G4LogicalVolume* experimentalHall_log)
 	phantom_phys	= new G4PVPlacement(0, G4ThreeVector(phantompos_x, phantompos_y, phantompos_z), phantom_log, "phantom_phys", experimentalHall_log, false, 0);
 
 	//---------------------------- a Killer Plane
-	G4Box* KP_box = new G4Box("KP_box", 1.2*phantomSizeX, 1.2*phantomSizeY, 0.5*mm);
+	G4Box* KP_box = new G4Box("KP_box", phantomSizeX, phantomSizeY, 0.5*mm);
 	KP_log = new G4LogicalVolume(KP_box, G4Material::GetMaterial("Air"), "KP_log", 0,0,0);
 	KP_log -> SetVisAttributes(new G4VisAttributes(TRUE, G4Colour(0.3,0.7,0.1)));
-	KP_phys = new G4PVPlacement(0, G4ThreeVector(phantompos_x, phantompos_y, -0.5*mm), KP_log, "KP_phys", experimentalHall_log, false, 0);
+	KP_phys = new G4PVPlacement(0, G4ThreeVector(phantompos_x, phantompos_y, -500.*mm), KP_log, "KP_phys", experimentalHall_log, false, 0);
   
 
   //    volumes
