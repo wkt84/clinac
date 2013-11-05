@@ -15,8 +15,8 @@
 /acc/Y1 50 mm
 /acc/Y2 50 mm
 #
-#/general/bUsePS true
-#/general/PSname results/PS2.dat
+/general/bUsePS true
+/general/PSname /home/hpc/g4work/linac/PhSp/PS.dat
 /killer/e- 0 MeV
 /killer/e+ 0 MeV
 /killer/gamma 0 MeV
@@ -44,7 +44,7 @@
 /vis/drawVolume
 #
 # Specify view angle:
-/vis/viewer/set/viewpointThetaPhi 90. 180.
+/vis/viewer/set/viewpointThetaPhi 60. 120.
 #
 # Specify zoom value:
 /vis/viewer/zoom 1.4
