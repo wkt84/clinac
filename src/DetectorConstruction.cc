@@ -39,9 +39,9 @@ DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, S
 	detectorMessenger = new DetectorMessenger(this);
 
 	//Define half size of the world
-	worldSizeX = 1.2*m;
-  worldSizeY = 1.2*m;
-  worldSizeZ = 1.2*m;
+	worldSizeX = 8.5*m;
+  worldSizeY = 5.5*m;
+  worldSizeZ = 4.705*m;
 
 	//Define half size of the phantom
   phantomSizeX = 0.2*m;
@@ -114,6 +114,24 @@ void DetectorConstruction::DefineMaterials()
 	G4Element* elW =
 		new G4Element("Tungsten", "W", z= 74., a= 183.84*g/mole);
 
+	G4Element* elMg = 
+		new G4Element("Magnesium", "Mg", z= 12., a= 24.305*g/mole);
+
+	G4Element* elAl = 
+		new G4Element("Aluminium", "Al", z= 13., a= 26.981*g/mole);
+
+	G4Element* elSi = 
+		new G4Element("Silicon", "Si", z= 14., a= 28.086*g/mole);
+
+	G4Element* elS = 
+		new G4Element("Sulfur", "S", z= 16., a= 32.065*g/mole);
+
+	G4Element* elCa =
+		new G4Element("Calcium", "Ca", z= 20., a= 40.078*g/mole);
+
+	G4Element* elFe =
+		new G4Element("Iron", "Fe", z= 26., a=55.845*g/mole);
+
   G4Material* Air =
   new G4Material("Air", density= 1.290*mg/cm3, 2);
   Air->AddElement(elO, 30*perCent);
@@ -131,8 +149,21 @@ void DetectorConstruction::DefineMaterials()
 
 	G4Material* W2 = new G4Material("W2", density=18.0*g/cm3, 1);
 	W2->AddElement(elW, 1);
+
+	//Data from housyasen syahei-sekkei handbook
+	G4Material* Concrete =
+		new G4Material("Concrete", density=2.30*g/cm3, 8);
+	Concrete->AddElement(elH, 0.42*perCent);
+	Concrete->AddElement(elO, 50.74*perCent);
+	Concrete->AddElement(elMg, 0.12*perCent);
+	Concrete->AddElement(elAl, 0.44*perCent);
+	Concrete->AddElement(elSi, 38.61*perCent);
+	Concrete->AddElement(elS, 0.07*perCent);
+	Concrete->AddElement(elCa, 6.87*perCent);
+	Concrete->AddElement(elFe, 2.74*perCent);
   
 	G4NistManager::Instance()->FindOrBuildMaterial("G4_Cu");
+	G4NistManager::Instance()->FindOrBuildMaterial("G4_Fe");
 }
 
 G4VPhysicalVolume* DetectorConstruction::CreateGeometry()
@@ -415,6 +446,77 @@ void DetectorConstruction::ConstructAccel(G4LogicalVolume* experimentalHall_log)
 	 regVol3->AddRootLogicalVolume(JawXLV);
 	 JawYLV->SetRegion(regVol3);
 	 regVol3->AddRootLogicalVolume(JawYLV);
+
+	 //Concrete Wall and Steel Wall--------------------------------------------------------------
+	 G4Box *WallA = new G4Box("WallA", 0.8*m, 5.025*m, 2.05*m);
+	 G4LogicalVolume *WallALV = new G4LogicalVolume(WallA, G4Material::GetMaterial("Concrete"), "WallALV", 0, 0, 0);
+	 G4VPhysicalVolume *WallAPV = new G4PVPlacement(0, G4ThreeVector(4.65*m, 0.475*m, -0.755*m), WallALV, "WallAPV", experimentalHall_log, false, 0);
+
+	 G4Box *WallB = new G4Box("WallB", 6.175*m, 0.815*m, 2.05*m);
+	 G4LogicalVolume *WallBLV = new G4LogicalVolume(WallB, G4Material::GetMaterial("Concrete"), "WallBLV", 0, 0, 0);
+	 G4VPhysicalVolume *WallBPV = new G4PVPlacement(0, G4ThreeVector(-2.325*m, 4.685*m, -0.755*m), WallBLV, "WallBPV", experimentalHall_log, false, 0);
+
+	 G4Box *WallC = new G4Box("WallC", 6.175*m, 0.825*m, 2.05*m);
+	 G4LogicalVolume *WallCLV = new G4LogicalVolume(WallC, G4Material::GetMaterial("Concrete"), "WallCLV", 0, 0, 0);
+	 G4VPhysicalVolume *WallCPV = new G4PVPlacement(0, G4ThreeVector(-2.325*m, -3.725*m, -0.755*m), WallCLV, "WallCPV", experimentalHall_log, false, 0);
+
+	 G4Box *WallD = new G4Box("WallD", 0.8*m, 2.335*m, 2.05*m);
+	 G4LogicalVolume *WallDLV = new G4LogicalVolume(WallD, G4Material::GetMaterial("Concrete"), "WallDLV", 0, 0, 0);
+	 G4VPhysicalVolume *WallDPV = new G4PVPlacement(0, G4ThreeVector(-7.7*m, 1.535*m, -0.755*m), WallDLV, "WallDPV", experimentalHall_log, false, 0);
+
+	 G4Box *WallE = new G4Box("WallE", 0.7*m, 2.385*m, 2.05*m);
+	 G4LogicalVolume *WallELV = new G4LogicalVolume(WallE, G4Material::GetMaterial("Concrete"), "WallELV", 0, 0, 0);
+	 G4VPhysicalVolume *WallEPV = new G4PVPlacement(0, G4ThreeVector(-4.3*m, -0.515*m, -0.755*m), WallELV, "WallEPV", experimentalHall_log, false, 0);
+
+	 G4Box *WallF = new G4Box("WallF", 6.975*m, 5.025*m, 0.95*m);
+	 G4LogicalVolume *WallFLV = new G4LogicalVolume(WallF, G4Material::GetMaterial("Concrete"), "WallFLV", 0, 0, 0);
+	 G4VPhysicalVolume *WallFPV = new G4PVPlacement(0, G4ThreeVector(-1.525*m, 0.475*m, -3.755*m), WallFLV, "WallFPV", experimentalHall_log, false, 0);
+
+	 G4Box *WallG = new G4Box("WallG", 6.975*m, 5.025*m, 0.8*m);
+	 G4LogicalVolume *WallGLV = new G4LogicalVolume(WallG, G4Material::GetMaterial("Concrete"), "WallGLV", 0, 0, 0);
+	 G4VPhysicalVolume *WallGPV = new G4PVPlacement(0, G4ThreeVector(-1.525*m, 0.475*m, 2.095*m), WallGLV, "WallGPV", experimentalHall_log, false, 0);
+
+	 G4Box *SteelA = new G4Box("SteelA", 4.375*m, 1.85*m, 0.225*m);
+	 G4LogicalVolume *SteelALV = new G4LogicalVolume(SteelA, G4Material::GetMaterial("G4_Fe"), "SteelALV", 0, 0, 0);
+	 G4VPhysicalVolume *SteelAPV = new G4PVPlacement(0, G4ThreeVector(0.125*m, -0.2*m, -3.03*m), SteelALV, "SteelAPV", experimentalHall_log,false, 0);
+
+	 G4Box *SteelB = new G4Box("SteelB", 4.375*m, 1.85*m, 0.25*m);
+	 G4LogicalVolume *SteelBLV = new G4LogicalVolume(SteelB, G4Material::GetMaterial("G4_Fe"), "SteelBLV", 0, 0, 0);
+	 G4VPhysicalVolume *SteelBPV = new G4PVPlacement(0, G4ThreeVector(0.125*m, -0.2*m, 2.045*m), SteelBLV, "SteelBPV", experimentalHall_log, false, 0);
+
+	 G4Box *SteelC = new G4Box("SteelC", 0.225*m, 1.85*m, 2.05*m);
+	 G4LogicalVolume *SteelCLV = new G4LogicalVolume(SteelC, G4Material::GetMaterial("G4_Fe"), "SteelCLV", 0, 0, 0);
+	 G4VPhysicalVolume *SteelCPV = new G4PVPlacement(0, G4ThreeVector(4.275*m, -0.23*m, -0.755*m), SteelCLV, "SteelCPV", experimentalHall_log, false, 0);
+
+	 G4Box *SteelD = new G4Box("SteelD", 0.225*m, 1.85*m, 2.05*m);
+	 G4LogicalVolume *SteelDLV = new G4LogicalVolume(SteelD, G4Material::GetMaterial("G4_Fe"), "SteelDLV", 0, 0, 0);
+	 G4VPhysicalVolume *SteelDPV = new G4PVPlacement(0, G4ThreeVector(-4.025*m, -0.23*m, -0.755*m), SteelDLV, "SteelDPV", experimentalHall_log, false, 0);
+
+	 G4Box *SteelE = new G4Box("SteelE", 0.225*m, 1.85*m, 0.25*m);
+	 G4LogicalVolume *SteelELV = new G4LogicalVolume(SteelE, G4Material::GetMaterial("G4_Fe"), "SteelELV", 0, 0, 0);
+	 G4VPhysicalVolume *SteelEPV = new G4PVPlacement(0, G4ThreeVector(4.275*m, -0.23*m, 1.545*m), SteelELV, "SteelEPV", experimentalHall_log, false, 0);
+
+	 G4Box *SteelF = new G4Box("SteelF", 0.225*m, 1.85*m, 0.25*m);
+	 G4LogicalVolume *SteelFLV = new G4LogicalVolume(SteelF, G4Material::GetMaterial("G4_Fe"), "SteelFLV", 0, 0, 0);
+	 G4VPhysicalVolume *SteelFPV = new G4PVPlacement(0, G4ThreeVector(-4.025*m, -0.23*m, 1.545*m), SteelFLV, "SteelFPV", experimentalHall_log, false, 0);
+
+	 G4VisAttributes *WallVis = new G4VisAttributes(G4Colour(0.2, 0.1, 0.1));
+	 WallALV->SetVisAttributes(WallVis);
+	 WallBLV->SetVisAttributes(WallVis);
+	 WallCLV->SetVisAttributes(WallVis);
+	 WallDLV->SetVisAttributes(WallVis);
+	 WallELV->SetVisAttributes(WallVis);
+	 WallFLV->SetVisAttributes(WallVis);
+	 WallGLV->SetVisAttributes(WallVis);
+
+	 G4VisAttributes *SteelVis = new G4VisAttributes(G4Colour(0.4, 0.1, 0.1));
+	 SteelALV->SetVisAttributes(SteelVis);
+	 SteelBLV->SetVisAttributes(SteelVis);
+	 SteelCLV->SetVisAttributes(SteelVis);
+	 SteelDLV->SetVisAttributes(SteelVis);
+	 SteelELV->SetVisAttributes(SteelVis);
+	 SteelFLV->SetVisAttributes(SteelVis);
+
 
 /*
 	 //detector --------------------------------------------------------------------
