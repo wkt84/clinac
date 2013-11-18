@@ -126,7 +126,7 @@ void DetectorConstruction::DefineMaterials()
 	Water->GetIonisation()->SetMeanExcitationEnergy(75.*eV);
 
 	G4Material* W =
-		new G4Material("W", density=15.0*g/cm3, 1);
+		new G4Material("W", density=16.9*g/cm3, 1);
 	W->AddElement(elW, 1);
 
 	G4Material* W2 = new G4Material("W2", density=18.0*g/cm3, 1);

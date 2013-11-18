@@ -1,10 +1,10 @@
 /run/verbose 0
 /event/verbose 0
 /tracking/verbose 0
-/acc/X1 50 mm
-/acc/X2 50 mm
-/acc/Y1 50 mm
-/acc/Y2 50 mm
+/acc/X1 200 mm
+/acc/X2 200 mm
+/acc/Y1 200 mm
+/acc/Y2 200 mm
 /general/nMax 10000
 /general/bSave false
 #/general/bUsePS false 
