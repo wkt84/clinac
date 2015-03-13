@@ -13,7 +13,6 @@
 #include "G4LogicalVolumeStore.hh"
 #include "G4SolidStore.hh"
 
-
 PhantomROGeometry::PhantomROGeometry(G4String aString,
 		G4double phantomDimX,
 		G4double phantomDimY,

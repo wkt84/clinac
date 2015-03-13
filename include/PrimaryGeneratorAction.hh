@@ -3,6 +3,7 @@
 
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "globals.hh"
+#include "G4SystemOfUnits.hh"
 #include "SInputData.hh"
 #include "G4RunManager.hh"
 #include "G4ParticleTable.hh"

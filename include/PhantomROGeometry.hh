@@ -5,6 +5,7 @@
 #define PhantomROGeometry_h 
 
 #include "G4VReadOutGeometry.hh"
+#include "G4SystemOfUnits.hh"
 
 class PhantomROGeometry : public G4VReadOutGeometry
 {

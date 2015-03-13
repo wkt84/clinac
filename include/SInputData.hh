@@ -2,6 +2,7 @@
 #define inputDataH
 
 #include "globals.hh"
+#include "G4SystemOfUnits.hh"
 #include "G4ThreeVector.hh"
 
 struct SGeneralData

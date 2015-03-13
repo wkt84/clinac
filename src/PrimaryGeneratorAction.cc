@@ -5,6 +5,7 @@
 #include "G4ParticleTable.hh"
 #include "G4ParticleDefinition.hh"
 #include "globals.hh"
+#include "G4SystemOfUnits.hh"
 #include "Randomize.hh"
 
 PrimaryGeneratorAction::PrimaryGeneratorAction(SInputData *inputData)

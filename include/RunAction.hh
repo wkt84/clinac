@@ -5,6 +5,7 @@
 #include "CInputData.hh"
 
 #include "globals.hh"
+#include "G4SystemOfUnits.hh"
 #include "G4UserRunAction.hh"
 
 class G4Timer;

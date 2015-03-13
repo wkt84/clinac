@@ -2,6 +2,7 @@
 #define DetectorMessenger_h 1
 
 #include "globals.hh"
+#include "G4SystemOfUnits.hh"
 #include "G4UImessenger.hh"
 
 class DetectorConstruction;

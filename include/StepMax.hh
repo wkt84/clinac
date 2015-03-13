@@ -2,6 +2,7 @@
 #define StepMax_h 1
 
 #include "globals.hh"
+#include "G4SystemOfUnits.hh"
 #include "G4VDiscreteProcess.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4Step.hh"

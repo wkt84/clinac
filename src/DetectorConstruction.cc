@@ -15,6 +15,7 @@
 #include "G4PVPlacement.hh"
 #include "G4PVReplica.hh"
 #include "globals.hh"
+#include "G4SystemOfUnits.hh"
 #include "G4Colour.hh"
 
 #include "G4GeometryManager.hh"

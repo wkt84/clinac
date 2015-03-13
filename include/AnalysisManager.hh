@@ -2,6 +2,7 @@
 #define G4ANALYSISMANAGER_HH
 
 #include "globals.hh"
+#include "G4SystemOfUnits.hh"
 #include <vector>
 #include "G4ThreeVector.hh"
 

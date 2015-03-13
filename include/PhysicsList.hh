@@ -3,6 +3,7 @@
 
 #include "G4VUserPhysicsList.hh"
 #include "globals.hh"
+#include "G4SystemOfUnits.hh"
 //#include "G4VPhysicsConstructor.hh"
 
 #include "G4EmConfigurator.hh"
