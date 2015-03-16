@@ -30,7 +30,7 @@ class PhysicsList: public G4VUserPhysicsList
 	StepMax* GetStepMaxProcess() {return stepMaxProcess;};
 
 	//Construct Physics processes and register them
-	void ConstructEM();
+//	void ConstructEM();
 	//	void ConstructPN();
 
 	private:
@@ -40,6 +40,8 @@ class PhysicsList: public G4VUserPhysicsList
 	G4double cutForPositron;
 
 	G4VPhysicsConstructor* decPhysicsList;
+	G4VPhysicsConstructor* emPhysicsList;
+	G4VPhysicsConstructor* emExtraPhysicsList;
 	std::vector<G4VPhysicsConstructor*>  hadronPhys;
 
   StepMax* stepMaxProcess;

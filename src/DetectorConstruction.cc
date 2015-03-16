@@ -8,7 +8,7 @@
 #include "G4Box.hh"
 #include "G4Tubs.hh"
 #include "G4Cons.hh"
-#include "G4Polycone.hh"
+#include "G4GenericPolycone.hh"
 #include "G4LogicalVolume.hh"
 #include "G4RotationMatrix.hh"
 #include "G4ThreeVector.hh"
@@ -337,7 +337,7 @@ void DetectorConstruction::ConstructAccel(G4LogicalVolume* experimentalHall_log)
 	 const G4double z1[23] = {-1.88976*cm, -1.82372*cm, -1.73228*cm, -1.65862*cm, -1.57988*cm, -1.50622*cm, -1.38938*cm, -1.28524*cm, -1.08458*cm, -0.89916*cm, -0.72898*cm, -0.5715*cm, -0.42672*cm, -0.30226*cm, -0.2286*cm, -0.17018*cm, -0.11938*cm, -0.0762*cm, -0.0762*cm, -0.3175*cm, -0.3175*cm, 0.000*cm, 0.000*cm};
 	 const G4double r1[23] = {0.000*cm, 0.1016*cm, 0.19812*cm, 0.2667*cm, 0.33274*cm, 0.4064*cm, 0.5207*cm, 0.62992*cm, 0.87122*cm, 1.10744*cm, 1.34874*cm, 1.59512*cm, 1.84658*cm, 2.10566*cm, 2.2352*cm, 2.36728*cm, 2.49682*cm, 2.63398*cm, 3.175*cm, 3.429*cm, 3.81*cm, 3.81*cm, 0.000*cm};
 
-	 G4Polycone *FFL1A_1Cone = new G4Polycone("FFL1A_1", 0.*deg, 360.*deg, 23, r1, z1);
+	 G4GenericPolycone *FFL1A_1Cone = new G4GenericPolycone("FFL1A_1", 0.*deg, 360.*deg, 23, r1, z1);
 
 	 z0=-872.525*mm;
 	 centre.set(0.,0.,z0);
