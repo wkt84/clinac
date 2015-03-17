@@ -54,7 +54,7 @@ void RunAction::EndOfRunAction(const G4Run* aRun)
   G4double time = timer->GetUserElapsed();
   G4cout << "elapsed time[s] : " << time << G4endl;
 
-	fname = "../results/dose/hist" + seedname + ".root";
+	fname = "results/dose/hist_w" + seedname + ".root";
 
 	AnalysisManager* analysis = AnalysisManager::getInstance();
 	analysis->finish(fname);

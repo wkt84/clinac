@@ -47,25 +47,25 @@ AnalysisManager* AnalysisManager::getInstance()
 void AnalysisManager::book() 
 { 
   // Instantiate the histogram and ntuple factories
-  hist_z = new TH1F("h1", "1D-Dose", 500, 0, 500);
+  hist_z = new TH1F("h1", "1D-Dose", 100, 0, 500);
 	hist_z->GetXaxis()->SetTitle("depth (mm)");
 	hist_z->GetYaxis()->SetTitle("Dose (Gy)");
 
-	hist_xz = new TH2F("h2", "2D-Dose", 500, -250, 250, 500, 0, 500);
+	hist_xz = new TH2F("h2", "2D-Dose", 100, -250, 250, 100, 0, 500);
 	hist_xz->GetXaxis()->SetTitle("x (mm)");
 	hist_xz->GetYaxis()->SetTitle("z (mm)");
 	hist_xz->GetZaxis()->SetTitle("Dose (Gy)");
 
-	hist_u = new TH2F("h3","2D-Uncertainty", 500, -250, 250, 500, 0, 500);
+	hist_u = new TH2F("h3","2D-Uncertainty", 100, -250, 250, 100, 0, 500);
 	hist_u->GetXaxis()->SetTitle("x (mm)");
 	hist_u->GetYaxis()->SetTitle("z (mm)");
 	hist_u->GetZaxis()->SetTitle("Uncertainty(%)");
 	
-	hist_n = new TH2F("h4","Count", 500, -250, 250, 500, 0, 500);
+	hist_n = new TH2F("h4","Count", 100, -250, 250, 100, 0, 500);
 
-	hist_d2 = new TH2F("h5", "dosedose", 500, -250, 250, 500, 0, 500);
+	hist_d2 = new TH2F("h5", "dosedose", 100, -250, 250, 100, 0, 500);
 
-	hist_o = new TH2F("h6", "photonuclear", 500, -250, 250, 500, 0, 500);
+	hist_o = new TH2F("h6", "photonuclear", 100, -250, 250, 100, 0, 500);
 	hist_o->GetXaxis()->SetTitle("x (mm)");
 	hist_o->GetYaxis()->SetTitle("z (mm)");
 	hist_o->GetZaxis()->SetTitle("Dose (Gy)");
@@ -130,14 +130,14 @@ void AnalysisManager::finish(G4String& fname)
 
 	// Calculate Uncertainty
 	for(i=1; i<501; i++){
-		for(j=1; j<501; j++){
+		for(j=1; j<101; j++){
 			n = hist_n->GetBinContent(i, j);
 			d2 = hist_d2->GetBinContent(i, j);
 			ave = hist_xz->GetBinContent(i, j)/n;
 
 			if(n>1){
 				unc = 100*std::sqrt((d2-n*ave*ave)/(n*(n-1)))/(hist_xz->GetBinContent(i,j));
-				hist_u->Fill((2*i-501)/2, (2*j-1)/2, unc);
+				hist_u->Fill((2*i-501)*2.5, (2*j-1)*2.5, unc);
 			}
 		}
 	}

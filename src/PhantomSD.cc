@@ -61,10 +61,10 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 		G4int k = ROhist -> GetReplicaNumber(1);
 		G4int i = ROhist -> GetReplicaNumber(2);
 
-		G4int numberOfVoxel = 500;
-		G4double voxelWidthX = 1.*mm;
-		G4double voxelWidthY = 1.*mm;
-		G4double voxelWidthZ = 1.*mm;
+		G4int numberOfVoxel = 100;
+		G4double voxelWidthX = 5.*mm;
+		G4double voxelWidthY = 5.*mm;
+		G4double voxelWidthZ = 5.*mm;
 
 		G4double density = aStep->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetDensity();
 		G4double volume = voxelWidthX * voxelWidthY * voxelWidthZ;
@@ -80,7 +80,7 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 
 		AnalysisManager* analysis = AnalysisManager::getInstance();
 
-		if (y < 5.0 * mm && y > -5.0 * mm)
+		if (y <= 5.0 * mm && y >= -5.0 * mm)
 		{ 
 			// Fill a 2D histogram with the energy deposit in the plane
 			// containing the source
@@ -92,7 +92,7 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 
 			//  Fill 1D histogram with the energy deposit 
 			// along the axis perpendicular to the main axis of the source
-			if (x < 5.0 * mm && x > -5.0 * mm)                
+			if (x <= 5.0 * mm && x >= -5.0 * mm)                
 				analysis -> DoseDistribution(z,energyDeposit/(joule/kg));
 		} 
 	}

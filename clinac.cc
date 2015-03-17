@@ -55,7 +55,6 @@ int main(int argc,char** argv)
 		myInput->inputData.generalData.seed = 0;
 	}
 
-
   // set mandatory user action class
   //
   RunAction* run_action = new RunAction(myInput->inputData.generalData.seed, physics);
@@ -65,13 +64,15 @@ int main(int argc,char** argv)
   runManager->SetUserAction(gen_action);
 
   // Set the Seed
-	long seed;
+	G4int seed;
 	if(argc==3){
-		seed = (long)myInput->inputData.generalData.seed;
+		seed = myInput->inputData.generalData.seed;
 	}else{
 		seed = time(NULL);
 	}
-	CLHEP::HepRandom::setTheSeed(seed);
+
+	G4Random::setTheEngine(new CLHEP::RanecuEngine);
+	G4Random::setTheSeed(seed);
 
   // Initialize G4 kernel
   //

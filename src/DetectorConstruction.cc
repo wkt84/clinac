@@ -50,9 +50,9 @@ DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, S
   phantomSizeZ = 0.25*m;
 
   //Define the number of Voxels
-	numberOfVoxelsAlongX = 500;
-	numberOfVoxelsAlongY = 500;
-	numberOfVoxelsAlongZ = 500;
+	numberOfVoxelsAlongX = 100;
+	numberOfVoxelsAlongY = 100;
+	numberOfVoxelsAlongZ = 100;
 
 	sensitiveDetectorName = SDName;
 	killerPlaneName = KPname;
@@ -127,7 +127,7 @@ void DetectorConstruction::DefineMaterials()
 	Water->GetIonisation()->SetMeanExcitationEnergy(75.*eV);
 
 	G4Material* W =
-		new G4Material("W", density=15.0*g/cm3, 1);
+		new G4Material("W", density=16.9*g/cm3, 1);
 	W->AddElement(elW, 1);
 
 	G4Material* W2 = new G4Material("W2", density=18.0*g/cm3, 1);
@@ -353,7 +353,7 @@ void DetectorConstruction::ConstructAccel(G4LogicalVolume* experimentalHall_log)
 	 // region for cuts
 	 regVol2= new G4Region("flatfilterR");
 	 G4ProductionCuts* cuts2 = new G4ProductionCuts;
-	 cuts2->SetProductionCut(0.1*cm);
+	 cuts2->SetProductionCut(0.01*cm);
 	 regVol2->SetProductionCuts(cuts2);
 	 FFL1A_1LV->SetRegion(regVol2);
 	 regVol2->AddRootLogicalVolume(FFL1A_1LV);
@@ -409,7 +409,7 @@ void DetectorConstruction::ConstructAccel(G4LogicalVolume* experimentalHall_log)
 
 	 regVol3= new G4Region("Jaws");
 	 G4ProductionCuts* cuts3 = new G4ProductionCuts;
-	 cuts3->SetProductionCut(2.*cm);
+	 cuts3->SetProductionCut(0.1*cm);
 	 regVol3->SetProductionCuts(cuts3);
 
 	 JawXLV->SetRegion(regVol3);
