@@ -15,14 +15,10 @@
 #include "PhysicsList.hh"
 #include "StepMax.hh"
 
-RunAction::RunAction(G4int seed, PhysicsList* phys)
-	:physics(phys)
+RunAction::RunAction(SInputData *inputData, PhysicsList* phys)
+	:physics(phys),inputData(inputData)
 {
   timer = new G4Timer;
-
-	char a[10];
-	sprintf(a,"%d", seed);
-	seedname=(G4String)a;
 }
 
 RunAction::~RunAction()
@@ -54,7 +50,10 @@ void RunAction::EndOfRunAction(const G4Run* aRun)
   G4double time = timer->GetUserElapsed();
   G4cout << "elapsed time[s] : " << time << G4endl;
 
-	fname = "results/dose/hist_w" + seedname + ".root";
+	char a[10];
+	sprintf(a,"%d", this->inputData->generalData.seed);
+	seedname=(G4String)a;
+	fname = this->inputData->generalData.dosefile + "_w" + seedname + ".root";
 
 	AnalysisManager* analysis = AnalysisManager::getInstance();
 	analysis->finish(fname);

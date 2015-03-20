@@ -8,7 +8,7 @@
 #include "G4SystemOfUnits.hh"
 #include "Randomize.hh"
 
-PrimaryGeneratorAction::PrimaryGeneratorAction(SInputData *inputData)
+PrimaryGeneratorAction::PrimaryGeneratorAction(SInputData *inputData):inputData(inputData)
 {
   G4int n_particle = 1;
   particleGun = new G4ParticleGun(n_particle);
@@ -20,7 +20,6 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(SInputData *inputData)
   particleGun->SetParticlePosition(G4ThreeVector(0.0, 0.0, -1.0*m));
 	dev = 1.443847*mm;
 
-	this->inputData = inputData;
 	this->nParticle = 0;
 	this->gamma = ParticleTable->FindParticle("gamma");
 	this->electron = ParticleTable->FindParticle("e-");
@@ -100,7 +99,7 @@ void PrimaryGeneratorAction::FillParticles()
 	int i;
 	G4double x,y,z;
 	G4int d;
-	G4String s;
+//	G4String ss;
 
 	static bool checkFileRewind=false;
 	static bool bRewindTheFile=false;

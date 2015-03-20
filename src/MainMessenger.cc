@@ -23,6 +23,11 @@ CMainMessenger::CMainMessenger(CInputData *CInput)
 	this->PSname->SetDefaultValue("");
 	this->PSname->SetGuidance("File name of phase space data");
 	this->CInput->setPSname("");
+
+	this->dosefile = new G4UIcmdWithAString("/general/dosefile", this);
+	this->dosefile->SetDefaultValue("");
+	this->dosefile->SetGuidance("File name of dose data");
+	this->CInput->setDosefile("");
 }
 
 CMainMessenger::~CMainMessenger(void)
@@ -31,6 +36,7 @@ CMainMessenger::~CMainMessenger(void)
 	delete bUsePS;
 	delete bSave;
 	delete nMax;
+	delete dosefile;
 }
 
 void CMainMessenger::SetNewValue(G4UIcommand *cmd, G4String newValue)
@@ -46,5 +52,8 @@ void CMainMessenger::SetNewValue(G4UIcommand *cmd, G4String newValue)
 	}
 	if(cmd==this->PSname){
 		this->CInput->setPSname(newValue);
+	}
+	if(cmd==this->dosefile){
+		this->CInput->setDosefile(newValue);
 	}
 }

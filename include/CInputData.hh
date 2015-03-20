@@ -19,6 +19,7 @@ class CInputData
 	inline void setBSave(G4bool val){this->inputData.generalData.bSave=val;};
 	inline void setBUsePS(G4bool val){this->inputData.generalData.bUsePS=val;};
 	inline void setPSname(G4String val){this->inputData.generalData.PSname=val;};
+	inline void setDosefile(G4String val){this->inputData.generalData.dosefile=val;};
 	
 	private:
 };

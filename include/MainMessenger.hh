@@ -30,6 +30,7 @@ class CMainMessenger : public G4UImessenger
 	G4UIcmdWithABool *bSave;
 	G4UIcmdWithABool *bUsePS;
 	G4UIcmdWithAString *PSname;
+	G4UIcmdWithAString *dosefile;
 };
 
 #endif

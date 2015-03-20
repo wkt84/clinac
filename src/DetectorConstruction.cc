@@ -35,7 +35,8 @@ DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, S
 	regVol(0), regVol1(0), regVol2(0), regVol3(0),
 	phantomSD(0), phantomROGeometry(0), killerSD(0),
 	worldVis(0), targetAVis(0), targetBVis(0), primcolVis(0),
-	flatVis(0), xjawVis(0), yjawVis(0), phantomVis(0)
+	flatVis(0), xjawVis(0), yjawVis(0), phantomVis(0), inputData(inputData),
+	sensitiveDetectorName(SDName), killerPlaneName(KPname)
 {
 	detectorMessenger = new DetectorMessenger(this);
 
@@ -53,10 +54,6 @@ DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, S
 	numberOfVoxelsAlongX = 100;
 	numberOfVoxelsAlongY = 100;
 	numberOfVoxelsAlongZ = 100;
-
-	sensitiveDetectorName = SDName;
-	killerPlaneName = KPname;
-	this->inputData = inputData;
 
 }
 

@@ -10,6 +10,7 @@ struct SGeneralData
 	G4int seed;
 	G4String fileInputData;
 	G4String PSname;
+	G4String dosefile;
 	G4int nMax;
 	G4bool bSave;
 	G4bool bUsePS;

@@ -90,7 +90,7 @@
 #/vis/viewer/flush
 #
 #/acc/update
-/run/beamOn 10
+/run/beamOn 1
 #
 #/acc/X1 0 mm
 #/acc/X2 0 mm

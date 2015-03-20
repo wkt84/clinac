@@ -10,9 +10,8 @@
 #include "G4SDManager.hh"
 #include "G4ParticleDefinition.hh"
 
-KillerSD::KillerSD(G4String name, SInputData *inputData):G4VSensitiveDetector(name)
+KillerSD::KillerSD(G4String name, SInputData *inputData):G4VSensitiveDetector(name),inputData(inputData)
 {
-	this->inputData = inputData;
 	this->nParticle = 0;
 }
 

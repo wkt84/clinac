@@ -17,7 +17,7 @@ class PhysicsList;
 class RunAction : public G4UserRunAction
 {
 	public:
-	RunAction(G4int seed, PhysicsList*);
+	RunAction(SInputData*, PhysicsList*);
 	~RunAction();
 
 
@@ -30,6 +30,7 @@ class RunAction : public G4UserRunAction
 	private:
 	G4Timer* timer;
 	PhysicsList* physics;
+	SInputData *inputData;
 };
 
 #endif
