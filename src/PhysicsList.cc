@@ -36,6 +36,7 @@
 #include "G4IonPhysics.hh"
 
 #include "G4HadronicProcessStore.hh"
+#include "G4NeutronHPManager.hh"
 
 PhysicsList::PhysicsList() : G4VUserPhysicsList()
 {
@@ -47,8 +48,15 @@ PhysicsList::PhysicsList() : G4VUserPhysicsList()
 
 //	stepMaxProcess = 0;
 	SetVerboseLevel(0);
+
+	// Set verbose level of hadronic process
 //	G4HadronicProcessStore *hadron = G4HadronicProcessStore::Instance();
 //	hadron->SetVerbose(0);
+
+	// Set verbose level of neutron HP process
+//	G4NeutronHPManager *neutronHP = G4NeutronHPManager::GetInstance();
+//	neutronHP->SetVerboseLevel(0);
+
 
 	stepMaxProcess = 0;
 
@@ -102,7 +110,10 @@ void PhysicsList::ConstructProcess()
 
   decPhysicsList->ConstructProcess();
 
-	emPhysicsList = new G4EmStandardPhysics_option3(1);
+	emPhysicsList = new G4EmStandardPhysics_option3(0);
+//	emPhysicsList = new G4EmLivermorePhysics(1);
+//	emPhysicsList = new G4EmPenelopePhysics(1);
+
 	emExtraPhysicsList = new G4EmExtraPhysics();
 
 	emPhysicsList->ConstructProcess();
@@ -117,7 +128,7 @@ void PhysicsList::ConstructProcess()
 		  hadronPhys[i]->ConstructProcess();
   }
 
-	SetVerboseLevel(1);
+	SetVerboseLevel(0);
 
 }
 

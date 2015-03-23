@@ -42,11 +42,7 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 	G4double energyDeposit = aStep -> GetTotalEnergyDeposit();
 
 	G4String pname = aStep->GetTrack()->GetDefinition()->GetParticleName();
-/*	if(pname!="gamma" && pname!="e-" && pname!="e+"){
-	G4cout << pname << "! ";
-	i = 1;
-	}
-*/
+	
 	// Check that the energy deposit is not null
 	if(energyDeposit == 0.)
 		return false;
