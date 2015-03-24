@@ -92,7 +92,9 @@
 #/acc/update
 /run/beamOn 1
 #
-#/acc/X1 0 mm
-#/acc/X2 0 mm
+#/acc/X1 100 mm
+#/acc/X2 100 mm
+#/acc/Y1 100 mm
+#/acc/Y2 100 mm
 #/run/initialize
-#/run/beamOn 3
+#/run/beamOn 1
