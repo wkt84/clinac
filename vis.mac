@@ -29,7 +29,7 @@
 #
 # Use this open statement to create a .heprep file suitable for
 # viewing in HepRApp:
-#/vis/open HepRepFile
+#/vis/open HepRepXML
 #
 # Use this open statement to create a .wrl file suitable for
 # viewing in a VRML viewer:
@@ -90,7 +90,7 @@
 #/vis/viewer/flush
 #
 #/acc/update
-/run/beamOn 1
+/run/beamOn 10
 #
 #/acc/X1 100 mm
 #/acc/X2 100 mm
