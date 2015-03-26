@@ -12,17 +12,17 @@
 #include "G4Decay.hh"
 #include "G4DecayPhysics.hh"
 
-#include "G4Gamma.hh"
-#include "G4Electron.hh"
-#include "G4Positron.hh"
-#include "G4Proton.hh"
-#include "G4AntiProton.hh"
-#include "G4Deuteron.hh"
-#include "G4Triton.hh"
-#include "G4He3.hh"
-#include "G4Alpha.hh"
-#include "G4GenericIon.hh"
-#include "G4Neutron.hh"
+//#include "G4Gamma.hh"
+//#include "G4Electron.hh"
+//#include "G4Positron.hh"
+//#include "G4Proton.hh"
+//#include "G4AntiProton.hh"
+//#include "G4Deuteron.hh"
+//#include "G4Triton.hh"
+//#include "G4He3.hh"
+//#include "G4Alpha.hh"
+//#include "G4GenericIon.hh"
+//#include "G4Neutron.hh"
 
 #include "G4EmStandardPhysics_option3.hh"
 #include "G4EmLivermorePhysics.hh"
@@ -78,24 +78,24 @@ void PhysicsList::ConstructParticle()
   // This ensures that objects of these particle types will be
   // created in the program. 
 
-// gamma
-G4Gamma::Gamma();
- 
-// leptons
-G4Electron::Electron();
-G4Positron::Positron();
-
-// baryons
-G4Proton::Proton();
-G4AntiProton::AntiProton();
-G4Neutron::Neutron();
-
-// ions
-G4Deuteron::Deuteron();
-G4Triton::Triton();
-G4He3::He3();
-G4Alpha::Alpha();
-G4GenericIon::GenericIonDefinition();
+//// gamma
+//G4Gamma::Gamma();
+// 
+//// leptons
+//G4Electron::Electron();
+//G4Positron::Positron();
+//
+//// baryons
+//G4Proton::Proton();
+//G4AntiProton::AntiProton();
+//G4Neutron::Neutron();
+//
+//// ions
+//G4Deuteron::Deuteron();
+//G4Triton::Triton();
+//G4He3::He3();
+//G4Alpha::Alpha();
+//G4GenericIon::GenericIonDefinition();
 
 decPhysicsList->ConstructParticle();
 
@@ -377,7 +377,7 @@ void PhysicsList::SetCuts()
 
   if (verboseLevel>0) DumpCutValuesTable();
 }
-
+/*
 /////////////////////////////////////////////////////////////////////////////
 void PhysicsList::SetCutForGamma(G4double cut)
 {
@@ -398,7 +398,7 @@ void PhysicsList::SetCutForPositron(G4double cut)
   cutForPositron = cut;
   SetParticleCuts(cutForPositron, G4Positron::Positron());
 }
-
+*/
 /*
 void PhysicsList::SetCuts()
 {

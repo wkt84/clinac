@@ -22,9 +22,9 @@ class PhysicsList: public G4VUserPhysicsList
 	void ConstructParticle();
 	void ConstructProcess();
 	void SetCuts();
-	void SetCutForGamma(G4double);
-	void SetCutForElectron(G4double);
-	void SetCutForPositron(G4double);
+//	void SetCutForGamma(G4double);
+//	void SetCutForElectron(G4double);
+//	void SetCutForPositron(G4double);
 
 	void AddStepMax();
 	StepMax* GetStepMaxProcess() {return stepMaxProcess;};
