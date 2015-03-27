@@ -38,7 +38,7 @@
 #include "G4HadronicProcessStore.hh"
 #include "G4NeutronHPManager.hh"
 
-PhysicsList::PhysicsList() : G4VUserPhysicsList()
+PhysicsList::PhysicsList() : G4VModularPhysicsList()
 {
 	G4LossTableManager::Instance();
 	defaultCutValue = 0.1*mm;

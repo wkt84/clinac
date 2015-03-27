@@ -10,6 +10,7 @@
 #include "RunAction.hh"
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
+#include "G4GenericBiasingPhysics.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "PhantomSD.hh"
 #include "G4SDManager.hh"
@@ -34,11 +35,6 @@ int main(int argc,char** argv)
 
 	G4String sensitiveDetectorName = "Phantom";
 	G4String killerPlaneName = "Killer";
-	
-	// set mandatory initialization classes
-  // Physicsl List
-  PhysicsList* physics;
-  runManager->SetUserInitialization(physics = new PhysicsList);
 
 	// set main messenger class for the input data
 	CInputData *myInput;
@@ -47,6 +43,25 @@ int main(int argc,char** argv)
   // Detector Construction
   DetectorConstruction* detector = new DetectorConstruction(sensitiveDetectorName, killerPlaneName, &myInput->inputData);
   runManager->SetUserInitialization(detector);
+
+	// set mandatory initialization classes
+  // Physicsl List
+  PhysicsList* physics = new PhysicsList;
+
+	G4GenericBiasingPhysics* biasingPhysics = new G4GenericBiasingPhysics();
+	G4bool biasing = true;
+	if(biasing){
+		std::vector<G4String> processToBias;
+		processToBias.push_back("eBrem");
+		biasingPhysics->PhysicsBias("e-", processToBias);
+		biasingPhysics->PhysicsBias("e+", processToBias);
+		physics->RegisterPhysics(biasingPhysics);
+		G4cout << "Brems splitting on" << G4endl;
+	}else{
+		G4cout << "Brems splitting off" << G4endl;
+	}
+
+  runManager->SetUserInitialization(physics);
 
 
 	if(argc==3){

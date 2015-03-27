@@ -1,7 +1,7 @@
 #ifndef PhysicsList_h
 #define PhysicsList_h 1
 
-#include "G4VUserPhysicsList.hh"
+#include "G4VModularPhysicsList.hh"
 #include "globals.hh"
 #include "G4SystemOfUnits.hh"
 //#include "G4VPhysicsConstructor.hh"
@@ -11,7 +11,7 @@
 class G4VPhysicsConstructor;
 class StepMax;
 
-class PhysicsList: public G4VUserPhysicsList
+class PhysicsList: public G4VModularPhysicsList
 {
 	public:
 	PhysicsList();

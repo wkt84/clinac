@@ -90,6 +90,7 @@
 #/vis/viewer/flush
 #
 #/acc/update
+/biasing/setSplittingFactor 10
 /run/beamOn 10
 #
 #/acc/X1 100 mm

@@ -29,6 +29,8 @@
 #include "PhantomSD.hh"
 #include "KillerSD.hh"
 
+#include "BOptrBremSplitting.hh"
+
 DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, SInputData *inputData)
 : experimentalHall_log(0), phantom_log(0), 	targetA_log(0), targetB_log(0), chamber_log(0), det_log(0),
 	experimentalHall_phys(0), phantom_phys(0), 
@@ -477,4 +479,13 @@ void DetectorConstruction::ActivateDet()
 		killerSD->set(Ecut,Gcut,Ncut,Pcut);
 		KP_log->SetSensitiveDetector(killerSD);
 	}
+
+	// Setting of splitting
+	G4LogicalVolume* logicTargetA = G4LogicalVolumeStore::GetInstance()->GetVolume("targetA_log");
+	G4LogicalVolume* logicTargetB = G4LogicalVolumeStore::GetInstance()->GetVolume("targetB_log");
+
+	BOptrBremSplitting* bremSplittingOperator = new BOptrBremSplitting();
+	bremSplittingOperator->AttachTo(logicTargetA);
+	bremSplittingOperator->AttachTo(logicTargetB);
+	
 }
