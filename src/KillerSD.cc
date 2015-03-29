@@ -66,6 +66,8 @@ G4bool KillerSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 	G4ParticleDefinition *pd = aStep->GetTrack()->GetDefinition();
 	G4String pname = pd->GetParticleName();
 
+//	G4cout << aStep->GetTrack()->GetWeight() << G4endl;
+
 //	G4cout << inputData->generalData.nMax << G4endl;
 
 	if(pname == "e-"){

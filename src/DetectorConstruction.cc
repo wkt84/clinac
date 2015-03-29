@@ -157,6 +157,12 @@ G4VPhysicalVolume* DetectorConstruction::CreateGeometry()
 
 	ConstructAccel(experimentalHall_log);
 
+	static bool bCreateOprator = false;
+	if(!bCreateOprator){
+		ActivateBiasing();
+		bCreateOprator = true;
+	}
+
 	ActivateDet();
 
 	return physiworld;
@@ -479,7 +485,10 @@ void DetectorConstruction::ActivateDet()
 		killerSD->set(Ecut,Gcut,Ncut,Pcut);
 		KP_log->SetSensitiveDetector(killerSD);
 	}
+}
 
+void DetectorConstruction::ActivateBiasing()
+{
 	// Setting of splitting
 	G4LogicalVolume* logicTargetA = G4LogicalVolumeStore::GetInstance()->GetVolume("targetA_log");
 	G4LogicalVolume* logicTargetB = G4LogicalVolumeStore::GetInstance()->GetVolume("targetB_log");
@@ -487,5 +496,4 @@ void DetectorConstruction::ActivateDet()
 	BOptrBremSplitting* bremSplittingOperator = new BOptrBremSplitting();
 	bremSplittingOperator->AttachTo(logicTargetA);
 	bremSplittingOperator->AttachTo(logicTargetB);
-	
 }

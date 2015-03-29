@@ -92,6 +92,8 @@
 #/acc/update
 /biasing/setSplittingFactor 10
 /run/beamOn 10
+/biasing/setSplittingFactor 100
+/run/beamOn 10
 #
 #/acc/X1 100 mm
 #/acc/X2 100 mm

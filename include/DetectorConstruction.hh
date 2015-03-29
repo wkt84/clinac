@@ -38,6 +38,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	//Activate Detector
 	void ActivateDet();
 
+	//Activate biasing
+	void ActivateBiasing();
+
 	//Command Interface
 	inline void SetEnergy(G4int val){this->Energy=val;};
 	inline void SetX1(G4double val){this->X1=val;};
