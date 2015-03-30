@@ -16,6 +16,7 @@ class DetectorMessenger;
 class PhantomSD;
 class PhantomROGeometry;
 class KillerSD;
+class BOptrBremSplitting;
 
 class DetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -105,6 +106,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4String killerPlaneName;
 
 	SInputData *inputData;
+
+	BOptrBremSplitting* bremSplittingOperator;  //Operator of BremsSplitting
 
 
 	private:
