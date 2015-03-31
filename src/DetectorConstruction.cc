@@ -35,7 +35,7 @@
 DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, SInputData *inputData)
 : experimentalHall_log(0), phantom_log(0), 	targetA_log(0), targetB_log(0), chamber_log(0), det_log(0),
 	experimentalHall_phys(0), phantom_phys(0), 
-	regVol(0), regVol1(0), regVol2(0), regVol3(0),
+/*	regVol(0),*/ regVol1(0), regVol2(0), regVol3(0),
 	phantomSD(0), phantomROGeometry(0), killerSD(0),
 	worldVis(0), targetAVis(0), targetBVis(0), primcolVis(0),
 	flatVis(0), xjawVis(0), yjawVis(0), phantomVis(0), inputData(inputData),
@@ -75,7 +75,7 @@ DetectorConstruction::~DetectorConstruction()
 	delete yjawVis;
 	delete phantomVis;
 
-	delete regVol;
+//	delete regVol;
 	delete regVol1;
 	delete regVol2;
 	delete regVol3;
@@ -148,7 +148,7 @@ G4VPhysicalVolume* DetectorConstruction::CreateGeometry()
 	G4LogicalVolumeStore::GetInstance()->Clean();
 	G4SolidStore::GetInstance()->Clean();
 */
-	G4RegionStore::GetInstance()->DeRegister(regVol);
+//	G4RegionStore::GetInstance()->DeRegister(regVol);
 	G4RegionStore::GetInstance()->DeRegister(regVol1);
 	G4RegionStore::GetInstance()->DeRegister(regVol2);
 	G4RegionStore::GetInstance()->DeRegister(regVol3);
@@ -231,7 +231,7 @@ void DetectorConstruction::ConstructAccel(G4LogicalVolume* experimentalHall_log)
 			G4ThreeVector(targetBPos_x,targetBPos_y,targetBPos_z),
 			targetB_log,"targetB", experimentalHall_log,false,0);
 
-
+/*
 	// ***********  REGIONS for CUTS
 	G4ProductionCuts* cuts = new G4ProductionCuts;
 	cuts->SetProductionCut(0.1*cm);
@@ -243,7 +243,7 @@ void DetectorConstruction::ConstructAccel(G4LogicalVolume* experimentalHall_log)
 	regVol->AddRootLogicalVolume(targetA_log);
 	targetB_log->SetRegion(regVol);
 	regVol->AddRootLogicalVolume(targetB_log);
-
+*/
 	// Visualization attributes
 
 	targetAVis = new G4VisAttributes(G4Colour(1.,0.,1.));

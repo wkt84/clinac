@@ -89,6 +89,7 @@ void BOptrBremSplitting::StartTracking( const G4Track* /* track */ )
 {
   // -- reset the number of times the brem. splitting was applied:
   nInteractions = 0;
+	G4cout << "Tracking!" << G4endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

@@ -73,7 +73,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4VPhysicalVolume* KP_phys;
 
 	// Regions for cuts
-	G4Region* regVol;
+//	G4Region* regVol;
 	G4Region* regVol1;
 	G4Region* regVol2;
 	G4Region* regVol3;

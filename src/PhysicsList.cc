@@ -24,6 +24,7 @@
 //#include "G4GenericIon.hh"
 //#include "G4Neutron.hh"
 
+#include "G4EmStandardPhysics.hh"
 #include "G4EmStandardPhysics_option3.hh"
 #include "G4EmLivermorePhysics.hh"
 #include "G4EmPenelopePhysics.hh"
@@ -47,7 +48,7 @@ PhysicsList::PhysicsList() : G4VModularPhysicsList()
 	cutForPositron = defaultCutValue;
 
 //	stepMaxProcess = 0;
-	SetVerboseLevel(0);
+	SetVerboseLevel(1);
 
 	// Set verbose level of hadronic process
 //	G4HadronicProcessStore *hadron = G4HadronicProcessStore::Instance();
@@ -110,7 +111,8 @@ void PhysicsList::ConstructProcess()
 
   decPhysicsList->ConstructProcess();
 
-	emPhysicsList = new G4EmStandardPhysics_option3(0);
+//	emPhysicsList = new G4EmStandardPhysics(1);
+	emPhysicsList = new G4EmStandardPhysics_option3(1);
 //	emPhysicsList = new G4EmLivermorePhysics(1);
 //	emPhysicsList = new G4EmPenelopePhysics(1);
 
@@ -362,6 +364,7 @@ void PhysicsList::AddStepMax()
 /////////////////////////////////////////////////////////////////////////////
 void PhysicsList::SetCuts()
 {
+	SetVerboseLevel(1);
 
   if (verboseLevel >0){
     G4cout << "PhysicsList::SetCuts:";
