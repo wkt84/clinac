@@ -60,7 +60,7 @@ ApplyFinalStateBiasing( const G4BiasingProcessInterface* callingProcess,
   G4VParticleChange* processFinalState =
     callingProcess->GetWrappedProcess()->PostStepDoIt(*track, *step);
 
-	G4cout << "Brems!!" << G4endl;
+//	G4cout << "Brems" << G4endl;
 
   // -- if no splitting requested, let the brem. process to return directly its
   // -- generated final state:

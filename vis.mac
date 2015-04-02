@@ -9,11 +9,11 @@
 #
 #/run/initialize
 #
-/acc/X1 50 mm
-/acc/X2 50 mm
+/acc/X1 200 mm
+/acc/X2 0 mm
 #
-/acc/Y1 50 mm
-/acc/Y2 50 mm
+/acc/Y1 200 mm
+/acc/Y2 200 mm
 #
 #/general/bUsePS true
 #/general/PSname results/PS2.dat
@@ -29,11 +29,11 @@
 #
 # Use this open statement to create a .heprep file suitable for
 # viewing in HepRApp:
-#/vis/open HepRepXML
+/vis/open HepRepXML
 #
 # Use this open statement to create a .wrl file suitable for
 # viewing in a VRML viewer:
-/vis/open VRML2FILE
+#/vis/open VRML2FILE
 #
 # Disable auto refresh and quieten vis messages whilst scene and
 # trajectories are established:
@@ -90,14 +90,14 @@
 #/vis/viewer/flush
 #
 #/acc/update
-/biasing/setSplittingFactor 10
-/run/beamOn 10
+#/biasing/setSplittingFactor 10
+#/run/beamOn 1
 /biasing/setSplittingFactor 100
-/run/beamOn 10
+/run/beamOn 1
 #
 #/acc/X1 100 mm
 #/acc/X2 100 mm
 #/acc/Y1 100 mm
 #/acc/Y2 100 mm
 #/run/initialize
-#/run/beamOn 1
+#/run/beamOn 10

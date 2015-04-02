@@ -40,9 +40,12 @@ G4VPhysicalVolume* PhantomROGeometry::Build()
   // A dummy material is used to fill the volumes of the readout geometry.
 	// (It will be allowed to set a NULL pointer in volumes of such virtual
 	// division in future, since this material is irrelevant for tracking.)
-
-	G4Material* dummyMat = new G4Material(name="dummyMat", 
-			1., 1.*g/mole, 1.*g/cm3);
+	static bool bCreatedummyMat = false;
+	if(!bCreatedummyMat){
+		dummyMat = new G4Material(name="dummyMat", 
+				1., 1.*g/mole, 1.*g/cm3);
+		bCreatedummyMat = true;
+	}
 
 	G4double worldSizeX = 1.2*m;
 	G4double worldSizeY = 1.2*m;

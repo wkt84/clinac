@@ -19,8 +19,8 @@ class PhysicsList: public G4VModularPhysicsList
 
 	public:
 	// Construct particle and physics process
-	void ConstructParticle();
-	void ConstructProcess();
+//	void ConstructParticle();
+//	void ConstructProcess();
 	void SetCuts();
 //	void SetCutForGamma(G4double);
 //	void SetCutForElectron(G4double);
@@ -34,15 +34,15 @@ class PhysicsList: public G4VModularPhysicsList
 	//	void ConstructPN();
 
 	private:
-	G4EmConfigurator em_config;
+//	G4EmConfigurator em_config;
 	G4double cutForGamma;
 	G4double cutForElectron;
 	G4double cutForPositron;
 
-	G4VPhysicsConstructor* decPhysicsList;
-	G4VPhysicsConstructor* emPhysicsList;
-	G4VPhysicsConstructor* emExtraPhysicsList;
-	std::vector<G4VPhysicsConstructor*>  hadronPhys;
+//	G4VPhysicsConstructor* decPhysicsList;
+//	G4VPhysicsConstructor* emPhysicsList;
+//	G4VPhysicsConstructor* emExtraPhysicsList;
+//	std::vector<G4VPhysicsConstructor*>  hadronPhys;
 
   StepMax* stepMaxProcess;
 };

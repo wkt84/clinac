@@ -48,7 +48,8 @@ PhysicsList::PhysicsList() : G4VModularPhysicsList()
 	cutForPositron = defaultCutValue;
 
 //	stepMaxProcess = 0;
-	SetVerboseLevel(1);
+  G4int ver=1;
+	SetVerboseLevel(ver);
 
 	// Set verbose level of hadronic process
 //	G4HadronicProcessStore *hadron = G4HadronicProcessStore::Instance();
@@ -58,20 +59,32 @@ PhysicsList::PhysicsList() : G4VModularPhysicsList()
 //	G4NeutronHPManager *neutronHP = G4NeutronHPManager::GetInstance();
 //	neutronHP->SetVerboseLevel(0);
 
-
 	stepMaxProcess = 0;
+	AddStepMax();
 
-	decPhysicsList = new G4DecayPhysics();
+	RegisterPhysics(new G4EmStandardPhysics_option3(ver));
+//	RegisterPhysics(new G4EmLivermorePhysics(ver));
+//	RegisterPhysics(new G4EmPenelopePhysics(ver));
+
+	RegisterPhysics(new G4EmExtraPhysics(ver));
+
+	RegisterPhysics(new G4DecayPhysics(ver));
+
+	RegisterPhysics(new G4HadronElasticPhysicsHP(ver));
+	RegisterPhysics(new G4HadronPhysicsQGSP_BERT_HP(ver));
+	RegisterPhysics(new G4StoppingPhysics(ver));
+	RegisterPhysics(new G4IonPhysics(ver));
 }
 
 PhysicsList::~PhysicsList()
-{
+{/*
 	delete decPhysicsList;
 	delete emPhysicsList;
 	delete emExtraPhysicsList;
-	for(size_t i=0; i<hadronPhys.size(); i++) {delete hadronPhys[i];}
+	for(size_t i=0; i<hadronPhys.size(); i++) {delete hadronPhys[i];}*/
 }
 
+/*
 void PhysicsList::ConstructParticle()
 {
   // In this method, static member functions should be called
@@ -133,7 +146,7 @@ void PhysicsList::ConstructProcess()
 	SetVerboseLevel(0);
 
 }
-
+*/
 /*
 //gamma
 #include "G4LivermorePhotoElectricModel.hh"

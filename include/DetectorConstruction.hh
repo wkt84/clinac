@@ -61,8 +61,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	//
 	G4LogicalVolume* experimentalHall_log;
 	G4LogicalVolume* phantom_log;
-	G4LogicalVolume* targetA_log;
-	G4LogicalVolume* targetB_log;
+//	G4LogicalVolume* targetA_log;
+//	G4LogicalVolume* targetB_log;
 	G4LogicalVolume* chamber_log;
 	G4LogicalVolume* det_log;
 	G4LogicalVolume* KP_log;
@@ -71,6 +71,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4VPhysicalVolume* experimentalHall_phys;
 	G4VPhysicalVolume* phantom_phys;
 	G4VPhysicalVolume* KP_phys;
+	G4VPhysicalVolume* world_phys;
 
 	// Regions for cuts
 //	G4Region* regVol;

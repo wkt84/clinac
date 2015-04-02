@@ -24,6 +24,9 @@
 #include "G4SolidStore.hh"
 #include "G4RegionStore.hh"
 
+#include "G4TransportationManager.hh"
+#include "G4Navigator.hh"
+
 #include "G4SDManager.hh"
 #include "PhantomROGeometry.hh"
 #include "PhantomSD.hh"
@@ -33,7 +36,7 @@
 #include "G4BiasingProcessInterface.hh"
 
 DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, SInputData *inputData)
-: experimentalHall_log(0), phantom_log(0), 	targetA_log(0), targetB_log(0), chamber_log(0), det_log(0),
+: experimentalHall_log(0), phantom_log(0), 	/*targetA_log(0), targetB_log(0),*/ chamber_log(0), det_log(0),
 	experimentalHall_phys(0), phantom_phys(0), 
 /*	regVol(0),*/ regVol1(0), regVol2(0), regVol3(0),
 	phantomSD(0), phantomROGeometry(0), killerSD(0),
@@ -42,6 +45,7 @@ DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, S
 	sensitiveDetectorName(SDName), killerPlaneName(KPname)
 {
 	detectorMessenger = new DetectorMessenger(this);
+	bremSplittingOperator = new BOptrBremSplitting();
 
 	//Define half size of the world
 	worldSizeX = 1.2*m;
@@ -63,6 +67,7 @@ DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, S
 DetectorConstruction::~DetectorConstruction()
 {
 	delete detectorMessenger;
+	delete bremSplittingOperator;
 
 	if(phantomROGeometry) delete phantomROGeometry;
 
@@ -141,20 +146,25 @@ G4VPhysicalVolume* DetectorConstruction::CreateGeometry()
   //------------------------------ experimental hall (world volume)
 
 	experimentalHall_log=NULL;
-/*
-	//Clean old geometry
-	G4GeometryManager::GetInstance()->OpenGeometry();
-	G4PhysicalVolumeStore::GetInstance()->Clean();
-	G4LogicalVolumeStore::GetInstance()->Clean();
-	G4SolidStore::GetInstance()->Clean();
-*/
-//	G4RegionStore::GetInstance()->DeRegister(regVol);
-	G4RegionStore::GetInstance()->DeRegister(regVol1);
-	G4RegionStore::GetInstance()->DeRegister(regVol2);
-	G4RegionStore::GetInstance()->DeRegister(regVol3);
 
-	G4VPhysicalVolume* physiworld = CreateWorld();
-	experimentalHall_log = physiworld->GetLogicalVolume();
+	//Clean old geometry
+  static bool fCleaned=false;
+	if(fCleaned){
+		G4GeometryManager::GetInstance()->OpenGeometry();
+		G4PhysicalVolumeStore::GetInstance()->Clean();
+		G4LogicalVolumeStore::GetInstance()->Clean();
+		G4SolidStore::GetInstance()->Clean();
+
+		//	G4RegionStore::GetInstance()->DeRegister(regVol);
+		G4RegionStore::GetInstance()->DeRegister(regVol1);
+		G4RegionStore::GetInstance()->DeRegister(regVol2);
+		G4RegionStore::GetInstance()->DeRegister(regVol3);
+	}else{
+		fCleaned=true;
+	}
+	
+	world_phys = CreateWorld();
+	experimentalHall_log = world_phys->GetLogicalVolume();
 
 	ConstructAccel(experimentalHall_log);
 
@@ -162,13 +172,13 @@ G4VPhysicalVolume* DetectorConstruction::CreateGeometry()
 
 	ActivateDet();
 
-	return physiworld;
+	return world_phys;
 }
 
 
 void DetectorConstruction::UpdateGeometry()
 {
-	G4RunManager::GetRunManager()->DefineWorldVolume(CreateGeometry());
+	G4RunManager::GetRunManager()->DefineWorldVolume(CreateGeometry(), true);
 }
 
 
@@ -452,12 +462,15 @@ void DetectorConstruction::ActivateDet()
 
 
 	if(!phantomROGeometry){
-//		G4cout << "no phantom SD" << G4endl;
+//		G4cout << "create phantom SD" << G4endl;
 		G4String ROGeometryName = "PhantomROGeometry";
 		phantomROGeometry = new PhantomROGeometry(ROGeometryName,
 				phantomSizeX, phantomSizeY, phantomSizeZ,
 				numberOfVoxelsAlongX, numberOfVoxelsAlongY, numberOfVoxelsAlongZ);
 		phantomROGeometry->BuildROGeometry();
+	}else{
+		phantomROGeometry->BuildROGeometry();
+//		phantomROGeometry->Rebuild();
 	}
 
 	if(!sdet){
@@ -487,14 +500,10 @@ void DetectorConstruction::ActivateDet()
 void DetectorConstruction::ActivateBiasing()
 {
 	// Setting of splitting
-//	G4LogicalVolume* logicTargetA = G4LogicalVolumeStore::GetInstance()->GetVolume("targetA_log");
+	G4LogicalVolume* logicTargetA = G4LogicalVolumeStore::GetInstance()->GetVolume("targetA_log");
 	G4LogicalVolume* logicTargetB = G4LogicalVolumeStore::GetInstance()->GetVolume("targetB_log");
 
-	static bool bCreateOprator = false;
-	if(!bCreateOprator){
-		bremSplittingOperator = new BOptrBremSplitting();
-		bCreateOprator = true;
-	}
-//	bremSplittingOperator->AttachTo(logicTargetA);
+	bremSplittingOperator->AttachTo(logicTargetA);
 	bremSplittingOperator->AttachTo(logicTargetB);
+
 }

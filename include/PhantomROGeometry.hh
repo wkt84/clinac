@@ -35,5 +35,6 @@ private:
   const G4int numberOfVoxelsAlongY;
   const G4int numberOfVoxelsAlongZ; 
   G4VPhysicalVolume *ROPhantomYDivisionPhys;
+	G4Material* dummyMat;
 };
 #endif

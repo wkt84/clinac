@@ -11,6 +11,12 @@
 #include "TH1.h"
 #include "TFile.h"
 
+#include "G4GeometryManager.hh"
+#include "G4PhysicalVolumeStore.hh"
+#include "G4LogicalVolumeStore.hh"
+#include "G4SolidStore.hh"
+#include "G4RegionStore.hh"
+
 #include "AnalysisManager.hh"
 #include "PhysicsList.hh"
 #include "StepMax.hh"
@@ -57,6 +63,12 @@ void RunAction::EndOfRunAction(const G4Run* aRun)
 
 	AnalysisManager* analysis = AnalysisManager::getInstance();
 	analysis->finish(fname);
-
-}
+/*
+	//Clean old geometry
+	G4GeometryManager::GetInstance()->OpenGeometry();
+	G4PhysicalVolumeStore::GetInstance()->Clean();
+	G4LogicalVolumeStore::GetInstance()->Clean();
+	G4SolidStore::GetInstance()->Clean();
+	G4RegionStore::GetInstance()->Clean();
+*/}
 

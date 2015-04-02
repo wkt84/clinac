@@ -39,7 +39,8 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 	if(aStep -> GetPreStepPoint() -> GetPhysicalVolume() -> GetName() != "phantom_phys")
 		return false;
 
-	G4double energyDeposit = aStep -> GetTotalEnergyDeposit();
+	G4double weight = aStep->GetTrack()->GetWeight();
+	G4double energyDeposit = aStep -> GetTotalEnergyDeposit()*weight;
 
 	G4String pname = aStep->GetTrack()->GetDefinition()->GetParticleName();
 	
@@ -53,9 +54,11 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 		// i is the x index, 
 		// j is the y index
 		// k is the z index
+	//	G4cout << "Before" << G4endl;
 		G4int j = ROhist -> GetReplicaNumber();
 		G4int k = ROhist -> GetReplicaNumber(1);
 		G4int i = ROhist -> GetReplicaNumber(2);
+	//	G4cout << "After" << G4endl;
 
 		G4int numberOfVoxel = 100;
 		G4double voxelWidthX = 5.*mm;

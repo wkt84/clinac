@@ -55,7 +55,7 @@ void KillerSD::save(G4int nParticle)
 	out.close();
 }
 
-G4bool KillerSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
+G4bool KillerSD::ProcessHits(G4Step* aStep, G4TouchableHistory* /*ROhist*/)
 {
 //	G4cout << ecut/MeV << " " << gcut/MeV << " " << ncut/MeV << " " << pcut/MeV << G4endl;
 
@@ -66,13 +66,13 @@ G4bool KillerSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 	G4ParticleDefinition *pd = aStep->GetTrack()->GetDefinition();
 	G4String pname = pd->GetParticleName();
 
-//	G4cout << aStep->GetTrack()->GetWeight() << G4endl;
 
 //	G4cout << inputData->generalData.nMax << G4endl;
 
 	if(pname == "e-"){
 		if(kE <= ecut) aStep->GetTrack()->SetTrackStatus(fStopAndKill);
 	}else if(pname == "gamma"){
+	//	G4cout << aStep->GetTrack()->GetTrackID() << " weight:" << aStep->GetTrack()->GetWeight() << G4endl;
 		if(kE <= gcut) aStep->GetTrack()->SetTrackStatus(fStopAndKill);
 	}else if(pname == "neutron"){
 //		G4cout << "Here is Neutron whose kinetic Energy is " << kE/MeV << " MeV !" << G4endl;
