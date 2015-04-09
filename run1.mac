@@ -6,19 +6,20 @@
 /acc/Y1 50 mm
 /acc/Y2 50 mm
 /general/dosefile /home/wakita/g4work/clinac/run1
-/general/nMax 10000
-/general/bSave false
+#/general/nMax 10000
+#/general/bSave false
 #/general/bUsePS false 
 #/general/PSname data/20x20.dat
 /killer/gamma 0 MeV
 /killer/e- 0 MeV
 /killer/e+ 0 MeV
 /killer/neutron 0 MeV
-/run/beamOn 100000000 
-/run/beamOn 100000000 
-/run/beamOn 100000000 
-/run/beamOn 100000000 
-/run/beamOn 100000000 
+/biasing/setSplittingFactor 20
+/run/beamOn 250000000 
+#/run/beamOn 100000000 
+#/run/beamOn 100000000 
+#/run/beamOn 100000000 
+#/run/beamOn 100000000 
 #/run/beamOn 100000000 
 #/run/beamOn 100000000 
 #/run/beamOn 100000000 

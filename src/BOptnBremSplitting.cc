@@ -61,6 +61,7 @@ ApplyFinalStateBiasing( const G4BiasingProcessInterface* callingProcess,
     callingProcess->GetWrappedProcess()->PostStepDoIt(*track, *step);
 
 //	G4cout << "Brems" << G4endl;
+//  G4cout << callingProcess->GetWrappedProcess()->GetProcessName() << G4endl;
 
   // -- if no splitting requested, let the brem. process to return directly its
   // -- generated final state:
@@ -104,6 +105,9 @@ ApplyFinalStateBiasing( const G4BiasingProcessInterface* callingProcess,
   
   // -- inform we will have fSplittingFactor gamma's:
   fParticleChange.SetNumberOfSecondaries( fSplittingFactor );
+
+	// -- weight propagation
+	fParticleChange.SetSecondaryWeightByProcess(true);
 
   // -- Store first gamma:
   G4Track* gammaTrack = actualParticleChange->GetSecondary(0);
