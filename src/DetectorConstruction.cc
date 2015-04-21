@@ -159,10 +159,13 @@ G4VPhysicalVolume* DetectorConstruction::CreateGeometry()
 		G4RegionStore::GetInstance()->DeRegister(regVol1);
 		G4RegionStore::GetInstance()->DeRegister(regVol2);
 		G4RegionStore::GetInstance()->DeRegister(regVol3);
+
+		G4GeometryManager::GetInstance()->CloseGeometry();
+		G4RunManager::GetRunManager()->GeometryHasBeenModified();
 	}else{
 		fCleaned=true;
 	}
-	
+
 	world_phys = CreateWorld();
 	experimentalHall_log = world_phys->GetLogicalVolume();
 
@@ -184,7 +187,7 @@ void DetectorConstruction::UpdateGeometry()
 
 G4VPhysicalVolume* DetectorConstruction::CreateWorld()
 {
-  G4Box* experimentalHall_box = new G4Box("expHall_box", worldSizeX, worldSizeY, worldSizeZ);
+	G4Box* experimentalHall_box = new G4Box("expHall_box", worldSizeX, worldSizeY, worldSizeZ);
 	experimentalHall_log = new G4LogicalVolume(experimentalHall_box,
 			G4Material::GetMaterial("Air"),"expHall_log",0,0,0);
 	experimentalHall_phys = new G4PVPlacement(0,G4ThreeVector(),
