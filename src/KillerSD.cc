@@ -30,7 +30,7 @@ void KillerSD::setfname()
 	sprintf(a,"%d",inputData->generalData.seed);
 	seedname = (G4String)a;
 
-	this->filename = "results/PS/PS_w" + seedname + ".dat";
+	this->filename = inputData->generalData.PSname + "_w" + seedname + ".dat";
 	this->particles = new SParticle[inputData->generalData.nMax];
 }
 

@@ -49,7 +49,7 @@ int main(int argc,char** argv)
   PhysicsList* physics = new PhysicsList;
 
 	G4GenericBiasingPhysics* biasingPhysics = new G4GenericBiasingPhysics();
-	G4bool biasing = true;
+	G4bool biasing = false;
 	if(biasing){
 		std::vector<G4String> processToBias;
 		processToBias.push_back("eBrem");

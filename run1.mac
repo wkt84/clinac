@@ -1,27 +1,27 @@
 /run/verbose 0
 /event/verbose 0
 /tracking/verbose 0
-/acc/X1 50 mm
-/acc/X2 50 mm
-/acc/Y1 50 mm
-/acc/Y2 50 mm
-/general/dosefile /home/wakita/g4work/clinac/run1
-#/general/nMax 10000
-#/general/bSave false
+/acc/X1 100 mm
+/acc/X2 100 mm
+/acc/Y1 100 mm
+/acc/Y2 100 mm
+/general/dosefile /home/wakita/g4work/clinac/results/dose/run151228
+/general/nMax 10000
+/general/bSave true
 #/general/bUsePS false 
-#/general/PSname data/20x20.dat
-/killer/gamma 0 MeV
-/killer/e- 0 MeV
-/killer/e+ 0 MeV
-/killer/neutron 0 MeV
-/biasing/setSplittingFactor 20
-/run/beamOn 250000000 
-#/run/beamOn 100000000 
-#/run/beamOn 100000000 
-#/run/beamOn 100000000 
-#/run/beamOn 100000000 
-#/run/beamOn 100000000 
-#/run/beamOn 100000000 
-#/run/beamOn 100000000 
-#/run/beamOn 100000000 
-#/run/beamOn 100000000 
+/general/PSname /home/wakita/g4work/clinac/results/PS/20x20/run15122l
+/killer/gamma 15 MeV
+/killer/e- 15 MeV
+/killer/e+ 15 MeV
+/killer/neutron 15 MeV
+#/biasing/setSplittingFactor 19
+/run/beamOn 150000000 
+/run/beamOn 150000000 
+/run/beamOn 150000000 
+/run/beamOn 150000000 
+/run/beamOn 150000000 
+/run/beamOn 150000000 
+/run/beamOn 150000000 
+/run/beamOn 150000000 
+/run/beamOn 150000000 
+/run/beamOn 150000000 
