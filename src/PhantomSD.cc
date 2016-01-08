@@ -60,10 +60,12 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 		G4int i = ROhist -> GetReplicaNumber(2);
 	//	G4cout << "After" << G4endl;
 
-		G4int numberOfVoxel = 100;
-		G4double voxelWidthX = 5.*mm;
-		G4double voxelWidthY = 5.*mm;
-		G4double voxelWidthZ = 5.*mm;
+		G4int numberOfVoxelX = 41;
+		G4int numberOfVoxelY = 41;
+		G4int numberOfVoxelZ = 410;
+		G4double voxelWidthX = 10.*mm;
+		G4double voxelWidthY = 10.*mm;
+		G4double voxelWidthZ = 1.*mm;
 
 		G4double density = aStep->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetDensity();
 		G4double volume = voxelWidthX * voxelWidthY * voxelWidthZ;
@@ -73,8 +75,8 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 
 		// Retrieve the coordinates of the center of the voxel where
 		// the energy deposit is located
-		x = ( - numberOfVoxel + 1+ 2*i )* voxelWidthX/2; 
-		y = ( - numberOfVoxel + 1+ 2*j )* voxelWidthY/2;
+		x = ( - numberOfVoxelX + 1+ 2*i )* voxelWidthX/2; 
+		y = ( - numberOfVoxelY + 1+ 2*j )* voxelWidthY/2;
 		z = ( 2*k + 1 ) * voxelWidthZ/2;
 
 		AnalysisManager* analysis = AnalysisManager::getInstance();

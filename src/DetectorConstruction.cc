@@ -53,14 +53,14 @@ DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, S
   worldSizeZ = 1.2*m;
 
 	//Define half size of the phantom
-  phantomSizeX = 0.25*m;
-  phantomSizeY = 0.25*m;
-  phantomSizeZ = 0.25*m;
+  phantomSizeX = 0.205*m;
+  phantomSizeY = 0.205*m;
+  phantomSizeZ = 0.205*m;
 
   //Define the number of Voxels
-	numberOfVoxelsAlongX = 100;
-	numberOfVoxelsAlongY = 100;
-	numberOfVoxelsAlongZ = 100;
+	numberOfVoxelsAlongX = 41;
+	numberOfVoxelsAlongY = 41;
+	numberOfVoxelsAlongZ = 410;
 
 }
 

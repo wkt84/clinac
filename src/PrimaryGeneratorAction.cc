@@ -76,11 +76,18 @@ void PrimaryGeneratorAction::FillParticles()
 	static int currentFilePosition=0;
 	static int currentFileSize=0;
 	int startDataFilePosition;
+
+	G4String seedname, filename;
+	char a[10];
+	sprintf(a,"%d",this->inputData->generalData.seed);
+	seedname = (G4String)a;
+	filename = this->inputData->generalData.PSname + "_w" + seedname + ".dat";
+
 	std::ifstream in;
-	in.open(this->inputData->generalData.PSname, std::ios::binary|std::ios::in);
+	in.open(filename, std::ios::binary|std::ios::in);
 	if (in==0)
 	{
-		std::cout <<"ERROR phase space file: "<< this->inputData->generalData.PSname << " NOT found. Run abort "<< G4endl;
+		std::cout <<"ERROR phase space file: "<< filename << " NOT found. Run abort "<< G4endl;
 		G4RunManager::GetRunManager()->AbortRun(true);
 	}
 
@@ -110,7 +117,7 @@ void PrimaryGeneratorAction::FillParticles()
 		if (bRewindTheFile) // to read the phase space file again to fill the container
 		{
 			in.close();
-		 	in.open(this->inputData->generalData.PSname, std::ios::binary|std::ios::in);
+		 	in.open(filename, std::ios::binary|std::ios::in);
 			in.seekg(startDataFilePosition, std::ios::beg);
 			checkFileRewind=true;
 			bRewindTheFile=false;

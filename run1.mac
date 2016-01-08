@@ -5,11 +5,11 @@
 /acc/X2 100 mm
 /acc/Y1 100 mm
 /acc/Y2 100 mm
-/general/dosefile /home/wakita/g4work/clinac/results/dose/run151228
+/general/dosefile /home/wakita/g4work/clinac/results/dose/run160104
 /general/nMax 10000
 /general/bSave true
 #/general/bUsePS false 
-/general/PSname /home/wakita/g4work/clinac/results/PS/20x20/run15122l
+/general/PSname /home/wakita/g4work/clinac/results/PS/20x20/run160104
 /killer/gamma 15 MeV
 /killer/e- 15 MeV
 /killer/e+ 15 MeV
