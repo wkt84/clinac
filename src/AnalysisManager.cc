@@ -45,27 +45,37 @@ AnalysisManager* AnalysisManager::getInstance()
 }
 
 void AnalysisManager::book() 
-{ 
+{
+	//Define half size of the phantom in mm
+  phantomSizeX = 205.;
+  phantomSizeY = 205.;
+  phantomSizeZ = 205.;
+
+  //Define the number of Voxels
+	numberOfVoxelsAlongX = 41;
+	numberOfVoxelsAlongY = 41;
+	numberOfVoxelsAlongZ = 410;
+
   // Instantiate the histogram and ntuple factories
-  hist_z = new TH1F("h1", "1D-Dose", 100, 0, 500);
+  hist_z = new TH1F("h1", "1D-Dose", numberOfVoxelsAlongZ, 0, phantomSizeZ*2);
 	hist_z->GetXaxis()->SetTitle("depth (mm)");
 	hist_z->GetYaxis()->SetTitle("Dose (Gy)");
 
-	hist_xz = new TH2F("h2", "2D-Dose", 100, -250, 250, 100, 0, 500);
+	hist_xz = new TH2F("h2", "2D-Dose", numberOfVoxelsAlongX, -phantomSizeX, phantomSizeX, numberOfVoxelsAlongZ, 0, phantomSizeZ*2);
 	hist_xz->GetXaxis()->SetTitle("x (mm)");
 	hist_xz->GetYaxis()->SetTitle("z (mm)");
 	hist_xz->GetZaxis()->SetTitle("Dose (Gy)");
 
-	hist_u = new TH2F("h3","2D-Uncertainty", 100, -250, 250, 100, 0, 500);
+	hist_u = new TH2F("h3","2D-Uncertainty", numberOfVoxelsAlongX, -phantomSizeX, phantomSizeX, numberOfVoxelsAlongZ, 0, phantomSizeZ*2);
 	hist_u->GetXaxis()->SetTitle("x (mm)");
 	hist_u->GetYaxis()->SetTitle("z (mm)");
 	hist_u->GetZaxis()->SetTitle("Uncertainty(%)");
 	
-	hist_n = new TH2F("h4","Count", 100, -250, 250, 100, 0, 500);
+	hist_n = new TH2F("h4","Count", numberOfVoxelsAlongX, -phantomSizeX, phantomSizeX, numberOfVoxelsAlongZ, 0, phantomSizeZ*2);
 
-	hist_d2 = new TH2F("h5", "dosedose", 100, -250, 250, 100, 0, 500);
+	hist_d2 = new TH2F("h5", "dosedose", numberOfVoxelsAlongX, -phantomSizeX, phantomSizeX, numberOfVoxelsAlongZ, 0, phantomSizeZ*2);
 
-	hist_o = new TH2F("h6", "photonuclear", 100, -250, 250, 100, 0, 500);
+	hist_o = new TH2F("h6", "photonuclear", numberOfVoxelsAlongX, -phantomSizeX, phantomSizeX, numberOfVoxelsAlongZ, 0, phantomSizeZ*2);
 	hist_o->GetXaxis()->SetTitle("x (mm)");
 	hist_o->GetYaxis()->SetTitle("z (mm)");
 	hist_o->GetZaxis()->SetTitle("Dose (Gy)");

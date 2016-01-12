@@ -73,9 +73,9 @@ void PrimaryGeneratorAction::SetParticles()
 
 void PrimaryGeneratorAction::FillParticles()
 {
-	static int currentFilePosition=0;
-	static int currentFileSize=0;
-	int startDataFilePosition;
+	static size_t currentFilePosition=0;
+	static size_t currentFileSize=0;
+	size_t startDataFilePosition;
 
 	G4String seedname, filename;
 	char a[10];

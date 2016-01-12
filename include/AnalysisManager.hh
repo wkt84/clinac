@@ -40,6 +40,12 @@ private:
 	G4double hit;
 	G4double square;
 
+	G4double phantomSizeX; //Phantom XSize
+	G4double phantomSizeY; //Phantom YSize
+	G4double phantomSizeZ; //Phantom ZSize  
+	G4int numberOfVoxelsAlongX; //Number of voxels along x axis
+	G4int numberOfVoxelsAlongY; //Number of voxels along y axis 
+	G4int numberOfVoxelsAlongZ; //Number of voxels along z axis 
 
 public:
 	G4int printnumber() const {return number;}
