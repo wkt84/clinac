@@ -58,9 +58,9 @@ DetectorConstruction::DetectorConstruction(G4String &SDName, G4String &KPname, S
   phantomSizeZ = 0.205*m;
 
   //Define the number of Voxels
-	numberOfVoxelsAlongX = 41;
+	numberOfVoxelsAlongX = 410;
 	numberOfVoxelsAlongY = 41;
-	numberOfVoxelsAlongZ = 410;
+	numberOfVoxelsAlongZ = 82;
 
 }
 

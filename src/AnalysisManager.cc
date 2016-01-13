@@ -52,9 +52,9 @@ void AnalysisManager::book()
   phantomSizeZ = 205.;
 
   //Define the number of Voxels
-	numberOfVoxelsAlongX = 41;
+	numberOfVoxelsAlongX = 410;
 	numberOfVoxelsAlongY = 41;
-	numberOfVoxelsAlongZ = 410;
+	numberOfVoxelsAlongZ = 82;
 
   // Instantiate the histogram and ntuple factories
   hist_z = new TH1F("h1", "1D-Dose", numberOfVoxelsAlongZ, 0, phantomSizeZ*2);

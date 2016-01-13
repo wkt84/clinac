@@ -60,12 +60,12 @@ G4bool PhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 		G4int i = ROhist -> GetReplicaNumber(2);
 	//	G4cout << "After" << G4endl;
 
-		G4int numberOfVoxelX = 41;
+		G4int numberOfVoxelX = 410;
 		G4int numberOfVoxelY = 41;
-		G4int numberOfVoxelZ = 410;
-		G4double voxelWidthX = 10.*mm;
+		G4int numberOfVoxelZ = 82;
+		G4double voxelWidthX = 1.*mm;
 		G4double voxelWidthY = 10.*mm;
-		G4double voxelWidthZ = 1.*mm;
+		G4double voxelWidthZ = 5.*mm;
 
 		G4double density = aStep->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetDensity();
 		G4double volume = voxelWidthX * voxelWidthY * voxelWidthZ;
